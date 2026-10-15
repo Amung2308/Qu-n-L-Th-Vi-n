@@ -17,18 +17,18 @@ using namespace std;
 
 int main() {
     // --- Khoi tao cac CTDL chinh cua chuong trinh ---
-    AVLTree<string, Sach> quanLySachTheoISBN;     // muc 4, dong 1
-    BSTree<string, Sach> danhMucSachTheoTen;      // muc 4, dong 2
-    HashTable<string, DocGia> quanLyDocGia;       // muc 4, dong 3
-    LinkedList<PhieuMuon> danhSachPhieuMuon;       // muc 4, dong 4
-    DynamicArray<GiaoDich> lichSuGiaoDich;         // muc 4, dong 5
-    Graph doThiTheLoai;                             // muc 4, dong 6
-    Trie trieTenSach;                               // muc 5 - CTDL tu tim hieu
+    AVLTree quanLySachTheoISBN;     // muc 4, dong 1
+    BSTree danhMucSachTheoTen;      // muc 4, dong 2
+    HashTable quanLyDocGia;         // muc 4, dong 3
+    LinkedList danhSachPhieuMuon;   // muc 4, dong 4
+    DynamicArray lichSuGiaoDich;    // muc 4, dong 5
+    Graph doThiTheLoai;             // muc 4, dong 6
+    Trie trieTenSach;               // muc 5 - CTDL tu tim hieu
 
     // TODO (Tuan 5): nap du lieu tu file khi khoi dong, vd:
     // vector<Sach> dsSach;
     // FileManager::docDanhSachSach("data/sach.dat", dsSach);
-    // for (const auto& s : dsSach) quanLySachTheoISBN.insert(s.isbn, s);
+    // for (const auto& s : dsSach) quanLySachTheoISBN.insert(s);
 
     bool dangChay = true;
     while (dangChay) {
