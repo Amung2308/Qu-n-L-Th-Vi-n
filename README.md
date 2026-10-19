@@ -1,12 +1,11 @@
 # Chương Trình Quản Lý Thư Viện (C++)
 
-Đồ án Tin học – Học kỳ I (2026-2027) · Giảng viên: Lương An Vinh
-Sinh viên thực hiện: Huỳnh Anh Minh · MSSV: _______ (điền sau) · Hình thức: Cá nhân
+Đồ án Tin học. Học kỳ I (2026-2027). Giảng viên: Lương An Vinh.
+Sinh viên thực hiện: Huỳnh Anh Minh. MSSV: DH52400642. Hình thức: cá nhân.
 
 ## Mô tả
 
-Chương trình quản lý thư viện chạy trên console (C++11+), lưu dữ liệu bằng file
-nhị phân/văn bản — **không dùng CSDL** theo đúng yêu cầu đề cương.
+Chương trình quản lý thư viện chạy trên console (C++11+), lưu dữ liệu bằng file nhị phân/văn bản, không dùng CSDL theo yêu cầu đề cương.
 
 ## Cấu trúc thư mục
 
@@ -52,7 +51,7 @@ Trên Windows (Dev-C++ / Code::Blocks): tạo project console mới, add toàn b
 ## Checklist theo tuần (theo đề cương, mục 11)
 
 - [x] Tuần 1 — Repo Git, SRS.pdf, cấu trúc thư mục
-- [ ] Tuần 2 — Design.pdf (sơ đồ lớp, định nghĩa struct)
+- [x] Tuần 2 — Design.pdf (sơ đồ lớp, định nghĩa struct)
 - [ ] Tuần 3 — AVL, BST, test quản lý sách
 - [ ] Tuần 4 — Hash Table, test quản lý độc giả
 - [ ] Tuần 5 — LinkedList, DynamicArray, File I/O
