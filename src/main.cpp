@@ -16,20 +16,14 @@
 using namespace std;
 
 int main() {
-    // --- Khoi tao cac CTDL chinh cua chuong trinh ---
-    AVLTree quanLySachTheoISBN;     // muc 4, dong 1
-    BSTree danhMucSachTheoTen;      // muc 4, dong 2
-    HashTable quanLyDocGia;         // muc 4, dong 3
-    LinkedList danhSachPhieuMuon;   // muc 4, dong 4
-    DynamicArray lichSuGiaoDich;    // muc 4, dong 5
-    Graph doThiTheLoai;             // muc 4, dong 6
-    Trie trieTenSach;               // muc 5 - CTDL tu tim hieu
-
-    // TODO (Tuan 5): nap du lieu tu file khi khoi dong, vd:
-    // vector<Sach> dsSach;
-    // FileManager::docDanhSachSach("data/sach.dat", dsSach);
-    // for (const auto& s : dsSach) quanLySachTheoISBN.insert(s);
-
+   
+    AVLTree quanLySachTheoISBN;     
+    BSTree danhMucSachTheoTen;      
+    HashTable quanLyDocGia;         
+    LinkedList danhSachPhieuMuon;   
+    DynamicArray lichSuGiaoDich;    
+    Graph doThiTheLoai;             
+    Trie trieTenSach;  
     bool dangChay = true;
     while (dangChay) {
         int chucNangChinh = Menu::hienThiMenuChinh();
@@ -39,8 +33,6 @@ int main() {
                 while (oLaiMenuSach) {
                     int luaChon = Menu::hienThiMenuQuanLySach();
                     if (luaChon == 0) { oLaiMenuSach = false; break; }
-                    // TODO (Tuan 3+): goi quanLySachTheoISBN / danhMucSachTheoTen /
-                    // trieTenSach tuong ung voi tung lua chon.
                     cout << "[Dang phat trien - se cai dat tu Tuan 3]\n";
                 }
                 break;
@@ -50,7 +42,6 @@ int main() {
                 while (oLaiMenuDocGia) {
                     int luaChon = Menu::hienThiMenuQuanLyDocGia();
                     if (luaChon == 0) { oLaiMenuDocGia = false; break; }
-                    // TODO (Tuan 4+): goi quanLyDocGia tuong ung.
                     cout << "[Dang phat trien - se cai dat tu Tuan 4]\n";
                 }
                 break;
@@ -60,7 +51,6 @@ int main() {
                 while (oLaiMenuMuonTra) {
                     int luaChon = Menu::hienThiMenuMuonTra();
                     if (luaChon == 0) { oLaiMenuMuonTra = false; break; }
-                    // TODO (Tuan 5-6): goi danhSachPhieuMuon, kiem tra rang buoc, tinh phat.
                     cout << "[Dang phat trien - se cai dat tu Tuan 5]\n";
                 }
                 break;
@@ -70,7 +60,6 @@ int main() {
                 while (oLaiMenuThongKe) {
                     int luaChon = Menu::hienThiMenuThongKe();
                     if (luaChon == 0) { oLaiMenuThongKe = false; break; }
-                    // TODO (Tuan 7+): goi lichSuGiaoDich / danhSachPhieuMuon de thong ke.
                     cout << "[Dang phat trien - se cai dat tu Tuan 7]\n";
                 }
                 break;
@@ -80,7 +69,6 @@ int main() {
                 while (oLaiMenuGoiY) {
                     int luaChon = Menu::hienThiMenuGoiYTimKiem();
                     if (luaChon == 0) { oLaiMenuGoiY = false; break; }
-                    // TODO (Tuan 7-8): goi doThiTheLoai.bfs()/dfs() va trieTenSach.goiYTheoTienTo().
                     cout << "[Dang phat trien - se cai dat tu Tuan 7-8]\n";
                 }
                 break;
@@ -94,9 +82,5 @@ int main() {
                 break;
         }
     }
-
-    // TODO (Tuan 5): ghi du lieu ra file truoc khi thoat, vd:
-    // FileManager::ghiDanhSachSach("data/sach.dat", <danh sach sach hien tai>);
-
     return 0;
 }
