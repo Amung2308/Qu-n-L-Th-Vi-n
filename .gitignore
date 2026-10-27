@@ -4,12 +4,8 @@ bin/
 *.obj
 *.exe
 *.out
-
-# OS / editor junk
 .DS_Store
 .vscode/
 .vs/
 *.swp
-
-# Du lieu nhi phan sinh ra khi chay thu (giu lai file mau that su trong data/ khi nop bai)
 data/*.dat.bak
