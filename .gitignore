@@ -1,5 +1,4 @@
-﻿# Build artifacts
-obj/
+﻿obj/
 bin/
 *.o
 *.obj
