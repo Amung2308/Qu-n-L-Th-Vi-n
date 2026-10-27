@@ -23,17 +23,14 @@ private:
     Node* findMinNode(Node* node) const;
     void inOrderTraverse(Node* node, std::vector<Sach>& out) const;
     void destroy(Node* node);
-
 public:
     AVLTree() : root(nullptr) {}
-    ~AVLTree() { destroy(root); }
+    AVLTree() { destroy(root); }
     AVLTree(const AVLTree&) = delete;
     AVLTree& operator=(const AVLTree&) = delete;
-
     void insert(const Sach& sach);
     void remove(const std::string& isbn);
     bool search(const std::string& isbn, Sach& outSach) const;
-    std::vector<Sach> inOrder() const; 
     int size() const;
     bool empty() const { return root == nullptr; }
 };
