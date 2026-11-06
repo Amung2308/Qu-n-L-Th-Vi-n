@@ -1,12 +1,15 @@
 #ifndef SACH_H
 #define SACH_H
 #include <string>
+using namespace std;
+
 struct Sach {
-    std::string isbn;
-    std::string tenSach;
-    std::string tacGia;
-    std::string theLoai;   
+    string isbn;
+    string tenSach;
+    string tacGia;
+    string theLoai;
     int namXuatBan;
-    int soLuong;            
+    int soLuong;
 };
 
+#endif

@@ -1,28 +1,36 @@
 #include "BSTree.h"
-void BSTree::destroy(Node* node) {
-    if (!node) return;
-    destroy(node->left);
-    destroy(node->right);
-    delete node;
-}
-BSTree::Node* BSTree::insertNode(Node* node, const Sach& sach) {
-    if (!node) return new Node(sach);
-    return node;
+#include <iostream>
+using namespace std;
+
+NutBST* taoNutBST(Sach s) {
+    NutBST* nut = new NutBST;
+    nut->thongTin = s;
+    nut->trai = NULL;
+    nut->phai = NULL;
+    return nut;
 }
 
-void BSTree::insert(const Sach& sach) {
-    root = insertNode(root, sach);
+NutBST* themBST(NutBST* goc, Sach s) {
+    if (goc == NULL) return taoNutBST(s);
+    if (s.tenSach < goc->thongTin.tenSach) {
+        goc->trai = themBST(goc->trai, s);
+    }
+    else {
+        goc->phai = themBST(goc->phai, s);
+    }
+    return goc;
 }
 
-void BSTree::inOrderTraverse(Node* node, std::vector<Sach>& out) const {
-    if (!node) return;
-    inOrderTraverse(node->left, out);
-    out.push_back(node->data);
-    inOrderTraverse(node->right, out);
+void inThuTuBST(NutBST* goc) {
+    if (goc == NULL) return;
+    inThuTuBST(goc->trai);
+    cout << goc->thongTin.tenSach << " - " << goc->thongTin.isbn << endl;
+    inThuTuBST(goc->phai);
 }
 
-std::vector<Sach> BSTree::inOrder() const {
-    std::vector<Sach> result;
-    inOrderTraverse(root, result);
-    return result;
+void giaiPhongBST(NutBST* goc) {
+    if (goc == NULL) return;
+    giaiPhongBST(goc->trai);
+    giaiPhongBST(goc->phai);
+    delete goc;
 }

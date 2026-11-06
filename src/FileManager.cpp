@@ -1,61 +1,32 @@
 #include "FileManager.h"
 #include <fstream>
-
-namespace FileManager {
-
-bool docDanhSachSach(const std::string& duongDan, std::vector<Sach>& out) {
-    (void)duongDan;
-    (void)out;
+bool docDanhSachSach(string duongDan, Sach ds[], int &soLuong, int soLuongToiDa) {
     return false;
 }
-
-bool ghiDanhSachSach(const std::string& duongDan, const std::vector<Sach>& data) {
-    (void)duongDan;
-    (void)data;
+bool ghiDanhSachSach(string duongDan, Sach ds[], int soLuong) {
     return false;
 }
-
-bool docDanhSachDocGia(const std::string& duongDan, std::vector<DocGia>& out) {
-    (void)duongDan;
-    (void)out;
+bool docDanhSachDocGia(string duongDan, DocGia ds[], int &soLuong, int soLuongToiDa) {
     return false;
 }
-
-bool ghiDanhSachDocGia(const std::string& duongDan, const std::vector<DocGia>& data) {
-    (void)duongDan;
-    (void)data;
+bool ghiDanhSachDocGia(string duongDan, DocGia ds[], int soLuong) {
     return false;
 }
-
-bool docDanhSachPhieuMuon(const std::string& duongDan, std::vector<PhieuMuon>& out) {
-    (void)duongDan;
-    (void)out;
+bool docDanhSachPhieu(string duongDan, PhieuMuon ds[], int &soLuong, int soLuongToiDa) {
     return false;
 }
-
-bool ghiDanhSachPhieuMuon(const std::string& duongDan, const std::vector<PhieuMuon>& data) {
-    (void)duongDan;
-    (void)data;
+bool ghiDanhSachPhieu(string duongDan, PhieuMuon ds[], int soLuong) {
     return false;
 }
-
-bool xuatBaoCaoVanBan(const std::string& duongDan, const std::string& noiDung) {
-    std::ofstream f(duongDan);
+bool xuatBaoCaoVanBan(string duongDan, string noiDung) {
+    ofstream f(duongDan.c_str());
     if (!f.is_open()) return false;
     f << noiDung;
     return true;
 }
-
-bool xuatDanhMucSachCSV(const std::string& duongDan, const std::vector<Sach>& data) {
-    (void)duongDan;
-    (void)data;
+bool xuatDanhMucSachCSV(string duongDan, Sach ds[], int soLuong) {
     return false;
 }
-
-bool saoLuuTheoNgay(const std::string& thuMucData, const std::string& ngayHienTai) {
-    (void)thuMucData;
-    (void)ngayHienTai;
+bool saoLuuTheoNgay(string thuMucData, string ngayHienTai) {
     return false;
 }
-
-} 

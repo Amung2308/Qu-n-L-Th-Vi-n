@@ -12,64 +12,106 @@
 #include "Trie.h"
 #include "FileManager.h"
 #include "Menu.h"
-
 using namespace std;
 
 int main() {
-   
-    AVLTree quanLySachTheoISBN;     
-    BSTree danhMucSachTheoTen;      
-    HashTable quanLyDocGia;         
-    LinkedList danhSachPhieuMuon;   
-    DynamicArray lichSuGiaoDich;    
-    Graph doThiTheLoai;             
-    Trie trieTenSach;  
+    NutAVL* gocAVL = NULL;
+    NutBST* gocBST = NULL;
+    NutBam* bangDocGia[SO_BUCKET];
+    khoiTaoBam(bangDocGia);
+    NutPhieu* dauPhieu = NULL;
+    NutPhieu* cuoiPhieu = NULL;
+    MangDong lichSuGiaoDich;
+    khoiTaoMang(lichSuGiaoDich);
+    DoThi doThiTheLoai;
+    khoiTaoDoThi(doThiTheLoai);
+    NutTrie* gocTrie = taoNutTrie();
+
     bool dangChay = true;
     while (dangChay) {
-        int chucNangChinh = Menu::hienThiMenuChinh();
+        int chucNangChinh = hienThiMenuChinh();
         switch (chucNangChinh) {
-            case 1: {
-                bool oLaiMenuSach = true;
-                while (oLaiMenuSach) {
-                    int luaChon = Menu::hienThiMenuQuanLySach();
-                    if (luaChon == 0) { oLaiMenuSach = false; break; }
-                    cout << "[Dang phat trien - se cai dat tu Tuan 3]\n";
+        case 1: {
+            bool oLaiMenuSach = true;
+            while (oLaiMenuSach) {
+                int luaChon = hienThiMenuQuanLySach();
+                if (luaChon == 0) { oLaiMenuSach = false; break; }
+                if (luaChon == 1) {
+                    Sach s;
+                    cout << "Nhap ISBN: ";
+                    cin >> s.isbn;
+                    cin.ignore();
+                    cout << "Nhap ten sach: ";
+                    getline(cin, s.tenSach);
+                    cout << "Nhap tac gia: ";
+                    getline(cin, s.tacGia);
+                    cout << "Nhap the loai: ";
+                    getline(cin, s.theLoai);
+                    cout << "Nhap nam xuat ban: ";
+                    cin >> s.namXuatBan;
+                    cout << "Nhap so luong: ";
+                    cin >> s.soLuong;
+                    cin.ignore();
+                    gocBST = themBST(gocBST, s);
+                    gocAVL = themAVL(gocAVL, s);
+                    cout << "Da them sach vao BST va AVL.\n";
                 }
-                break;
+                else if (luaChon == 4) {
+                    string isbn;
+                    cout << "Nhap ISBN can tim: ";
+                    cin >> isbn;
+                    NutAVL* ketqua = timAVL(gocAVL, isbn);
+                    if (ketqua != NULL) {
+                        cout << "\nKhong tim thay sach trong AVL.";
+                    } else {
+                        cout << "Da tim thay sach trong AVL: " << ketqua->thongTin.tenSach << endl;
+                    }
+                }
+                else if (luaChon == 5) {
+                    inThuTuAVL(gocAVL);
+                }
+                else if (luaChon == 6) {
+                    inThuTuBST(gocBST);
+                }
+                else {
+                    cout << "[Dang phat trien]\n";
+                }
             }
+            break;
+        }
             case 2: {
                 bool oLaiMenuDocGia = true;
                 while (oLaiMenuDocGia) {
-                    int luaChon = Menu::hienThiMenuQuanLyDocGia();
+                    int luaChon = hienThiMenuQuanLyDocGia();
                     if (luaChon == 0) { oLaiMenuDocGia = false; break; }
-                    cout << "[Dang phat trien - se cai dat tu Tuan 4]\n";
+                    cout << "[Dang phat trien]\n";
                 }
                 break;
             }
             case 3: {
                 bool oLaiMenuMuonTra = true;
                 while (oLaiMenuMuonTra) {
-                    int luaChon = Menu::hienThiMenuMuonTra();
+                    int luaChon = hienThiMenuMuonTra();
                     if (luaChon == 0) { oLaiMenuMuonTra = false; break; }
-                    cout << "[Dang phat trien - se cai dat tu Tuan 5]\n";
+                    cout << "[Dang phat trien]\n";
                 }
                 break;
             }
             case 4: {
                 bool oLaiMenuThongKe = true;
                 while (oLaiMenuThongKe) {
-                    int luaChon = Menu::hienThiMenuThongKe();
+                    int luaChon = hienThiMenuThongKe();
                     if (luaChon == 0) { oLaiMenuThongKe = false; break; }
-                    cout << "[Dang phat trien - se cai dat tu Tuan 7]\n";
+                    cout << "[Dang phat trien]\n";
                 }
                 break;
             }
             case 5: {
                 bool oLaiMenuGoiY = true;
                 while (oLaiMenuGoiY) {
-                    int luaChon = Menu::hienThiMenuGoiYTimKiem();
+                    int luaChon = hienThiMenuGoiYTimKiem();
                     if (luaChon == 0) { oLaiMenuGoiY = false; break; }
-                    cout << "[Dang phat trien - se cai dat tu Tuan 7-8]\n";
+                    cout << "[Dang phat trien]\n";
                 }
                 break;
             }
@@ -82,5 +124,13 @@ int main() {
                 break;
         }
     }
+    giaiPhongAVL(gocAVL);
+    giaiPhongBST(gocBST);
+    giaiPhongBam(bangDocGia);
+    giaiPhongDanhSachPhieu(dauPhieu);
+    giaiPhongMang(lichSuGiaoDich);
+    giaiPhongTrie(gocTrie);
+
     return 0;
 }
+

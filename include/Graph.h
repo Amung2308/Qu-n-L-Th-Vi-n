@@ -1,16 +1,23 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 #include <string>
-#include <vector>
-#include <map>
-class Graph {
-private:
-    std::map<std::string, std::vector<std::string>> danhSachKe;
-public:
-    void themDinh(const std::string& dinh);
-    void themCanh(const std::string& dinh1, const std::string& dinh2);
-    std::vector<std::string> bfs(const std::string& dinhBatDau) const;
-    std::vector<std::string> dfs(const std::string& dinhBatDau) const;
-    bool coDinh(const std::string& dinh) const;
+using namespace std;
+
+const int SO_DINH_TOI_DA = 50;
+const int SO_KE_TOI_DA = 50;
+
+struct DoThi {
+    string tenDinh[SO_DINH_TOI_DA];
+    int soDinh;
+    int ke[SO_DINH_TOI_DA][SO_KE_TOI_DA];
+    int soKe[SO_DINH_TOI_DA];
 };
 
+void khoiTaoDoThi(DoThi &dt);
+int timChiSoDinh(DoThi dt, string ten);
+void themDinh(DoThi &dt, string ten);
+void themCanh(DoThi &dt, string dinh1, string dinh2);
+void bfsDoThi(DoThi dt, string dinhBatDau);
+void dfsDoThi(DoThi dt, string dinhBatDau);
+
+#endif

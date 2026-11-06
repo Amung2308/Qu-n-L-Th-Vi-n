@@ -1,24 +1,21 @@
 #include "DynamicArray.h"
-
-void DynamicArray::growIfNeeded() {
-    
+#include <iostream>
+using namespace std;
+void khoiTaoMang(MangDong &md) {
+    md.duLieu = NULL;
+    md.soLuong = 0;
+    md.sucChua = 0;
 }
-
-void DynamicArray::pushBack(const GiaoDich& giaoDich) {
-    
-    (void)giaoDich;
+void themVaoCuoiMang(MangDong &md, GiaoDich gd) {
 }
-
-GiaoDich& DynamicArray::at(int index) {
-    if (index < 0 || index >= soLuong) {
-        throw std::out_of_range("DynamicArray::at - chi so ngoai pham vi");
+void inMang(MangDong md) {
+    for (int i = 0; i < md.soLuong; i++) {
+        cout << md.duLieu[i].maPhieu << " - " << md.duLieu[i].loaiGiaoDich << " - " << md.duLieu[i].ngayThucHien << endl;
     }
-    return data[index];
 }
-
-const GiaoDich& DynamicArray::at(int index) const {
-    if (index < 0 || index >= soLuong) {
-        throw std::out_of_range("DynamicArray::at - chi so ngoai pham vi");
-    }
-    return data[index];
+void giaiPhongMang(MangDong &md) {
+    delete[] md.duLieu;
+    md.duLieu = NULL;
+    md.soLuong = 0;
+    md.sucChua = 0;
 }

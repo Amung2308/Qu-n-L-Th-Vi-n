@@ -1,32 +1,19 @@
 #include "Trie.h"
-
-void Trie::destroy(TrieNode* node) {
-    if (!node) return;
-    for (auto& cap : node->con) {
-        destroy(cap.second);
-    }
-    delete node;
+NutTrie* taoNutTrie() {
+    NutTrie* nut = new NutTrie;
+    for (int i = 0; i < 128; i++) nut->con[i] = NULL;
+    nut->ketThuc = false;
+    return nut;
 }
-
-void Trie::insert(const std::string& tenSach) {
-    (void)tenSach;
+void themTrie(NutTrie* goc, string tenSach) {
 }
-
-bool Trie::search(const std::string& tenSach) const {
-    (void)tenSach;
+bool timTrie(NutTrie* goc, string tenSach) {
     return false;
 }
-
-void Trie::collectWords(TrieNode* node, const std::string& prefix, std::vector<std::string>& out) const {
-    if (!node) return;
-    if (node->ketThucTu) out.push_back(prefix);
-    for (const auto& cap : node->con) {
-        collectWords(cap.second, prefix + cap.first, out);
-    }
+void goiYTrie(NutTrie* goc, string tienTo) {
 }
-
-std::vector<std::string> Trie::goiYTheoTienTo(const std::string& tienTo) const {
-    std::vector<std::string> ketQua;
-    (void)tienTo;
-    return ketQua;
+void giaiPhongTrie(NutTrie* goc) {
+    if (goc == NULL) return;
+    for (int i = 0; i < 128; i++) giaiPhongTrie(goc->con[i]);
+    delete goc;
 }

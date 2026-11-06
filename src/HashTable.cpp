@@ -1,31 +1,26 @@
 #include "HashTable.h"
-
-int HashTable::hashFunction(const std::string& cmnd) const {
-    (void)cmnd;
+void khoiTaoBam(NutBam* bang[]) {
+    for (int i = 0; i < SO_BUCKET; i++) bang[i] = NULL;
+}
+int bam(string cmnd) {
     return 0;
 }
-
-void HashTable::insert(const DocGia& docGia) {
-    (void)docGia;
+void themBam(NutBam* bang[], DocGia dg) {
 }
-
-bool HashTable::search(const std::string& cmnd, DocGia& outDocGia) const {
-    (void)cmnd;
-    (void)outDocGia;
+bool timBam(NutBam* bang[], string cmnd, DocGia &ketQua) {
     return false;
 }
-
-bool HashTable::remove(const std::string& cmnd) {
-    (void)cmnd;
+bool xoaBam(NutBam* bang[], string cmnd) {
     return false;
 }
-
-std::vector<DocGia> HashTable::getAll() const {
-    std::vector<DocGia> result;
-    for (const auto& bucket : buckets) {
-        for (const auto& dg : bucket) {
-            result.push_back(dg);
+void giaiPhongBam(NutBam* bang[]) {
+    for (int i = 0; i < SO_BUCKET; i++) {
+        NutBam* cur = bang[i];
+        while (cur != NULL) {
+            NutBam* tiep = cur->tiep;
+            delete cur;
+            cur = tiep;
         }
+        bang[i] = NULL;
     }
-    return result;
 }
