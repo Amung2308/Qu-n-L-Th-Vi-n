@@ -61,9 +61,10 @@ int main() {
                     cout << "Nhap ISBN can tim: ";
                     cin >> isbn;
                     NutAVL* ketqua = timAVL(gocAVL, isbn);
-                    if (ketqua != NULL) {
+                    if (ketqua == NULL) {
                         cout << "\nKhong tim thay sach trong AVL.";
-                    } else {
+                    }
+                    else {
                         cout << "Da tim thay sach trong AVL: " << ketqua->thongTin.tenSach << endl;
                     }
                 }
@@ -79,15 +80,55 @@ int main() {
             }
             break;
         }
-            case 2: {
-                bool oLaiMenuDocGia = true;
-                while (oLaiMenuDocGia) {
-                    int luaChon = hienThiMenuQuanLyDocGia();
-                    if (luaChon == 0) { oLaiMenuDocGia = false; break; }
+        case 2: {
+            bool oLaiMenuDocGia = true;
+            while (oLaiMenuDocGia) {
+                int luaChon = hienThiMenuQuanLyDocGia();
+                if (luaChon == 0) { oLaiMenuDocGia = false; break; }
+                if (luaChon == 1) {
+                    DocGia dg;
+                    cout << "Nhap CMND: ";
+                    cin >> dg.cmnd;
+                    cin.ignore();
+                    cout << "Nhap ho ten: ";
+                    getline(cin, dg.hoTen);
+                    cout << "Nhap email: ";
+                    getline(cin, dg.email);
+                    cout << "Nhap SDT: ";
+                    getline(cin, dg.sdt);
+                    cout << "Nhap loai the (0=Sinh vien, 1=Giang vien, 2=VIP): ";
+                    int loai;
+                    cin >> loai;
+                    cin.ignore();
+                    dg.loaiThe = (LoaiThe)loai;
+                    themBam(bangDocGia, dg);
+                    cout << "Da them doc gia.\n";
+                }
+                else if (luaChon == 2) {
+                    string cmndCanXoa;
+                    cout << "Nhap CMND can xoa: ";
+                    cin >> cmndCanXoa;
+                    if (xoaBam(bangDocGia, cmndCanXoa)) cout << "Da xoa.\n";
+                    else cout << "Khong tim thay CMND nay.\n";
+                }
+                else if (luaChon == 4) {
+                    string cmndCanTim;
+                    cout << "Nhap CMND can tim: ";
+                    cin >> cmndCanTim;
+                    DocGia ketQua;
+                    if (timBam(bangDocGia, cmndCanTim, ketQua)) {
+                        cout << "Tim thay: " << ketQua.cmnd << " - " << ketQua.hoTen << " - " << ketQua.email << "\n";
+                    }
+                    else {
+                        cout << "Khong tim thay doc gia co CMND nay.\n";
+                    }
+                }
+                else {
                     cout << "[Dang phat trien]\n";
                 }
-                break;
             }
+            break;
+        }
             case 3: {
                 bool oLaiMenuMuonTra = true;
                 while (oLaiMenuMuonTra) {

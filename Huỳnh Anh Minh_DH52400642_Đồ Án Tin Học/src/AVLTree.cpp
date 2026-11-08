@@ -79,14 +79,52 @@ NutAVL* themAVL(NutAVL* goc, Sach s) {
     }
     return goc;
 }
+NutAVL* timNutNhoNhat(NutAVL* goc) {
+    NutAVL* cur = goc;
+    while (cur != NULL && cur->trai != NULL) cur = cur->trai;
+    return cur;
+}
+
 NutAVL* xoaAVL(NutAVL* goc, string isbn) {
-	if (goc == NULL)
-        return goc;
-    if (isbn == goc->thongTin.isbn)
-        return NULL;
-    if(isbn<goc->thongTin.isbn)
-		return timAVL(goc->trai, isbn); 
-	return timAVL(goc->phai, isbn);
+    if (goc == NULL) return NULL;
+
+    if (isbn < goc->thongTin.isbn) {
+        goc->trai = xoaAVL(goc->trai, isbn);
+    }
+    else if (isbn > goc->thongTin.isbn) {
+        goc->phai = xoaAVL(goc->phai, isbn);
+    }
+    else {
+        if (goc->trai == NULL || goc->phai == NULL) {
+            NutAVL* con = (goc->trai != NULL) ? goc->trai : goc->phai;
+            delete goc;
+            return con;
+        }
+        else {
+            NutAVL* ketTiep = timNutNhoNhat(goc->phai);
+            goc->thongTin = ketTiep->thongTin;
+            goc->phai = xoaAVL(goc->phai, ketTiep->thongTin.isbn);
+        }
+    }
+
+    int trai = chieuCaoAVL(goc->trai);
+    int phai = chieuCaoAVL(goc->phai);
+    goc->chieuCao = 1 + (trai > phai ? trai : phai);
+
+    int canBang = canBangAVL(goc);
+
+    if (canBang > 1 && canBangAVL(goc->trai) >= 0) return xoayPhaiAVL(goc);
+    if (canBang > 1 && canBangAVL(goc->trai) < 0) {
+        goc->trai = xoayTraiAVL(goc->trai);
+        return xoayPhaiAVL(goc);
+    }
+    if (canBang < -1 && canBangAVL(goc->phai) <= 0) return xoayTraiAVL(goc);
+    if (canBang < -1 && canBangAVL(goc->phai) > 0) {
+        goc->phai = xoayPhaiAVL(goc->phai);
+        return xoayTraiAVL(goc);
+    }
+
+    return goc;
 }
 NutAVL* timAVL(NutAVL* goc, string isbn) {
     return NULL;

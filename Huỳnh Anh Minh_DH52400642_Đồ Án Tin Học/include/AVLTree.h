@@ -19,5 +19,5 @@ NutAVL* xoaAVL(NutAVL* goc, string isbn);
 NutAVL* timAVL(NutAVL* goc, string isbn);
 void inThuTuAVL(NutAVL* goc);
 void giaiPhongAVL(NutAVL* goc);
-
+NutAVL* timNutNhoNhat(NutAVL* goc);
 #endif
