@@ -1,11 +1,39 @@
-﻿obj/
-bin/
-*.o
+﻿# Visual Studio
+.vs/
+x64/
+Debug/
+Release/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# File build va debug
+*.pdb
+*.idb
+*.ilk
+*.pch
 *.obj
 *.exe
-*.out
-.DS_Store
-.vscode/
-.vs/
-*.swp
-data/*.dat.bak
+*.dll
+*.lib
+*.exp
+
+# Thu muc du an long ben trong
+/Huỳnh Anh Minh_DH52400642_Đồ Án Tin Học/
+
+# File tam
+*.log
+*.cache
+
+# Bo qua file Debug va Build
+**/Debug/
+**/Release/
+**/x64/
+*.pdb
+*.ilk
+*.idb
+*.obj
+*.pch
+*.exe
+*.dll
