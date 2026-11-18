@@ -21,7 +21,6 @@ NutAVL* xoayPhaiAVL(NutAVL* nut) {
     NutAVL* traiCuaNut = nut->trai;
     nut->trai = traiCuaNut->phai;
     traiCuaNut->phai = nut;
-
     int tr1 = chieuCaoAVL(nut->trai);
     int ph1 = chieuCaoAVL(nut->phai);
     nut->chieuCao = 1 + (tr1 > ph1 ? tr1 : ph1);
@@ -29,7 +28,6 @@ NutAVL* xoayPhaiAVL(NutAVL* nut) {
     int tr2 = chieuCaoAVL(traiCuaNut->trai);
     int ph2 = chieuCaoAVL(traiCuaNut->phai);
     traiCuaNut->chieuCao = 1 + (tr2 > ph2 ? tr2 : ph2);
-
     return traiCuaNut;
 }
 
@@ -81,12 +79,14 @@ NutAVL* themAVL(NutAVL* goc, Sach s) {
 }
 NutAVL* timNutNhoNhat(NutAVL* goc) {
     NutAVL* cur = goc;
-    while (cur != NULL && cur->trai != NULL) cur = cur->trai;
+    while (cur != NULL && cur->trai != NULL) 
+        cur = cur->trai;
     return cur;
 }
 
 NutAVL* xoaAVL(NutAVL* goc, string isbn) {
-    if (goc == NULL) return NULL;
+    if (goc == NULL) 
+        return NULL;
 
     if (isbn < goc->thongTin.isbn) {
         goc->trai = xoaAVL(goc->trai, isbn);
@@ -113,12 +113,14 @@ NutAVL* xoaAVL(NutAVL* goc, string isbn) {
 
     int canBang = canBangAVL(goc);
 
-    if (canBang > 1 && canBangAVL(goc->trai) >= 0) return xoayPhaiAVL(goc);
+    if (canBang > 1 && canBangAVL(goc->trai) >= 0) 
+        return xoayPhaiAVL(goc);
     if (canBang > 1 && canBangAVL(goc->trai) < 0) {
         goc->trai = xoayTraiAVL(goc->trai);
         return xoayPhaiAVL(goc);
     }
-    if (canBang < -1 && canBangAVL(goc->phai) <= 0) return xoayTraiAVL(goc);
+    if (canBang < -1 && canBangAVL(goc->phai) <= 0) 
+        return xoayTraiAVL(goc);
     if (canBang < -1 && canBangAVL(goc->phai) > 0) {
         goc->phai = xoayPhaiAVL(goc->phai);
         return xoayTraiAVL(goc);
@@ -127,7 +129,13 @@ NutAVL* xoaAVL(NutAVL* goc, string isbn) {
     return goc;
 }
 NutAVL* timAVL(NutAVL* goc, string isbn) {
-    return NULL;
+    if (goc == NULL) 
+        return NULL;
+    if (isbn == goc->thongTin.isbn) 
+        return goc;
+    if (isbn < goc->thongTin.isbn) 
+        return timAVL(goc->trai, isbn);
+    return timAVL(goc->phai, isbn);
 }
 void inThuTuAVL(NutAVL* goc) {
     if (goc == NULL) 
@@ -137,8 +145,17 @@ void inThuTuAVL(NutAVL* goc) {
     inThuTuAVL(goc->phai);
 }
 void giaiPhongAVL(NutAVL* goc) {
-    if (goc == NULL) return;
+    if (goc == NULL)
+        return;
     giaiPhongAVL(goc->trai);
     giaiPhongAVL(goc->phai);
     delete goc;
+}
+void layTatCaSachAVL(NutAVL* goc, Sach ds[], int& soLuong) {
+    if (goc == NULL) 
+        return;
+    layTatCaSachAVL(goc->trai, ds, soLuong);
+    ds[soLuong] = goc->thongTin;
+    soLuong++;
+    layTatCaSachAVL(goc->phai, ds, soLuong);
 }

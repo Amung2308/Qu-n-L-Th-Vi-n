@@ -1,14 +1,10 @@
-﻿# Visual Studio
+# Visual Studio cache va file sinh ra
 .vs/
 x64/
 Debug/
 Release/
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-
-# File build va debug
+[Bb]in/
+[Oo]bj/
 *.pdb
 *.idb
 *.ilk
@@ -18,22 +14,20 @@ Release/
 *.dll
 *.lib
 *.exp
+*.suo
+*.user
 
-# Thu muc du an long ben trong
-/Huỳnh Anh Minh_DH52400642_Đồ Án Tin Học/
+# File project Visual Studio (giu tren may, khong dua len GitHub)
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Du lieu chay thu, duoc giu tren may
+data/*.dat
+data/*.dat.bak
 
 # File tam
 *.log
 *.cache
-
-# Bo qua file Debug va Build
-**/Debug/
-**/Release/
-**/x64/
-*.pdb
-*.ilk
-*.idb
-*.obj
-*.pch
-*.exe
-*.dll
+.DS_Store

@@ -60,3 +60,14 @@ bool xoaBam(NutBam* bang[], string cmnd) {
         bang[i] = NULL;
     }
 }
+void layTatCaDocGiaBam(NutBam* bang[], DocGia ds[], int& soLuong) {
+    soLuong = 0;
+    for (int i = 0; i < SO_BUCKET; i++) {
+        NutBam* cur = bang[i];
+        while (cur != NULL) {
+            ds[soLuong] = cur->thongTin;
+            soLuong++;
+            cur = cur->tiep;
+        }
+    }
+}

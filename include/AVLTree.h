@@ -17,7 +17,9 @@ NutAVL* xoayPhaiAVL(NutAVL* nut);
 NutAVL* themAVL(NutAVL* goc, Sach s);
 NutAVL* xoaAVL(NutAVL* goc, string isbn);
 NutAVL* timAVL(NutAVL* goc, string isbn);
-void inThuTuAVL(NutAVL* goc);
-void giaiPhongAVL(NutAVL* goc);
 NutAVL* timNutNhoNhat(NutAVL* goc);
+void inThuTuAVL(NutAVL* goc);
+void layTatCaSachAVL(NutAVL* goc, Sach ds[], int& soLuong);
+void giaiPhongAVL(NutAVL* goc);
+
 #endif

@@ -13,7 +13,7 @@
 #include "FileManager.h"
 #include "Menu.h"
 using namespace std;
-
+const int SO_LUONG_TOI_DA = 1000;
 int main() {
     NutAVL* gocAVL = NULL;
     NutBST* gocBST = NULL;
@@ -26,7 +26,24 @@ int main() {
     DoThi doThiTheLoai;
     khoiTaoDoThi(doThiTheLoai);
     NutTrie* gocTrie = taoNutTrie();
+    Sach dsSachNap[SO_LUONG_TOI_DA];
+    int soLuongSachNap = 0;
+    if (docDanhSachSach("data/sach.dat", dsSachNap, soLuongSachNap, SO_LUONG_TOI_DA)) {
+        for (int i = 0; i < soLuongSachNap; i++) {
+            gocAVL = themAVL(gocAVL, dsSachNap[i]);
+            gocBST = themBST(gocBST, dsSachNap[i]);
+        }
+        cout << "Da nap " << soLuongSachNap << " sach tu file.\n";
+    }
 
+    DocGia dsDocGiaNap[SO_LUONG_TOI_DA];
+    int soLuongDocGiaNap = 0;
+    if (docDanhSachDocGia("data/docgia.dat", dsDocGiaNap, soLuongDocGiaNap, SO_LUONG_TOI_DA)) {
+        for (int i = 0; i < soLuongDocGiaNap; i++) {
+            themBam(bangDocGia, dsDocGiaNap[i]);
+        }
+        cout << "Da nap " << soLuongDocGiaNap << " doc gia tu file.\n";
+    }
     bool dangChay = true;
     while (dangChay) {
         int chucNangChinh = hienThiMenuChinh();
@@ -54,7 +71,7 @@ int main() {
                     cin.ignore();
                     gocBST = themBST(gocBST, s);
                     gocAVL = themAVL(gocAVL, s);
-                    cout << "Da them sach vao BST va AVL.\n";
+                    cout << "\nDa them sach ";
                 }
                 else if (luaChon == 4) {
                     string isbn;
@@ -62,10 +79,10 @@ int main() {
                     cin >> isbn;
                     NutAVL* ketqua = timAVL(gocAVL, isbn);
                     if (ketqua == NULL) {
-                        cout << "\nKhong tim thay sach trong AVL.";
+                        cout << "\nKhong tim thay sach ";
                     }
                     else {
-                        cout << "Da tim thay sach trong AVL: " << ketqua->thongTin.tenSach << endl;
+                        cout << "\nDa tim thay sach: " << ketqua->thongTin.tenSach << endl;
                     }
                 }
                 else if (luaChon == 5) {
@@ -75,7 +92,7 @@ int main() {
                     inThuTuBST(gocBST);
                 }
                 else {
-                    cout << "[Dang phat trien]\n";
+                    cout << "\n[Dang phat trien]";
                 }
             }
             break;
@@ -102,14 +119,14 @@ int main() {
                     cin.ignore();
                     dg.loaiThe = (LoaiThe)loai;
                     themBam(bangDocGia, dg);
-                    cout << "Da them doc gia.\n";
+                    cout << "\nDa them doc gia ";
                 }
                 else if (luaChon == 2) {
                     string cmndCanXoa;
                     cout << "Nhap CMND can xoa: ";
                     cin >> cmndCanXoa;
-                    if (xoaBam(bangDocGia, cmndCanXoa)) cout << "Da xoa.\n";
-                    else cout << "Khong tim thay CMND nay.\n";
+                    if (xoaBam(bangDocGia, cmndCanXoa)) cout << "\nDa xoa ";
+                    else cout << "\nKhong tim thay CMND nay ";
                 }
                 else if (luaChon == 4) {
                     string cmndCanTim;
@@ -120,11 +137,11 @@ int main() {
                         cout << "Tim thay: " << ketQua.cmnd << " - " << ketQua.hoTen << " - " << ketQua.email << "\n";
                     }
                     else {
-                        cout << "Khong tim thay doc gia co CMND nay.\n";
+                        cout << "\nKhong tim thay doc gia co CMND nay ";
                     }
                 }
                 else {
-                    cout << "[Dang phat trien]\n";
+                    cout << "\n[Dang phat trien]";
                 }
             }
             break;
@@ -134,7 +151,7 @@ int main() {
                 while (oLaiMenuMuonTra) {
                     int luaChon = hienThiMenuMuonTra();
                     if (luaChon == 0) { oLaiMenuMuonTra = false; break; }
-                    cout << "[Dang phat trien]\n";
+                    cout << "\n[Dang phat trien]";
                 }
                 break;
             }
@@ -143,7 +160,7 @@ int main() {
                 while (oLaiMenuThongKe) {
                     int luaChon = hienThiMenuThongKe();
                     if (luaChon == 0) { oLaiMenuThongKe = false; break; }
-                    cout << "[Dang phat trien]\n";
+                    cout << "\n[Dang phat trien]";
                 }
                 break;
             }
@@ -152,7 +169,7 @@ int main() {
                 while (oLaiMenuGoiY) {
                     int luaChon = hienThiMenuGoiYTimKiem();
                     if (luaChon == 0) { oLaiMenuGoiY = false; break; }
-                    cout << "[Dang phat trien]\n";
+                    cout << "\n[Dang phat trien]";
                 }
                 break;
             }
@@ -164,7 +181,19 @@ int main() {
                 cout << "\nLua chon khong hop le, vui long thu lai.\n";
                 break;
         }
+        Sach dsSachLuu[SO_LUONG_TOI_DA];
+        int soLuongSachLuu = 0;
+        layTatCaSachAVL(gocAVL, dsSachLuu, soLuongSachLuu);
+        ghiDanhSachSach("data/sach.dat", dsSachLuu, soLuongSachLuu);
+
+        DocGia dsDocGiaLuu[SO_LUONG_TOI_DA];
+        int soLuongDocGiaLuu = 0;
+        layTatCaDocGiaBam(bangDocGia, dsDocGiaLuu, soLuongDocGiaLuu);
+        ghiDanhSachDocGia("data/docgia.dat", dsDocGiaLuu, soLuongDocGiaLuu);
+
+        cout << "Da luu " << soLuongSachLuu << " sach va " << soLuongDocGiaLuu << " doc gia ra file.\n";
     }
+
     giaiPhongAVL(gocAVL);
     giaiPhongBST(gocBST);
     giaiPhongBam(bangDocGia);

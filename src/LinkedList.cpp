@@ -7,9 +7,24 @@ NutPhieu* taoNutPhieu(PhieuMuon p) {
     nut->tiep = NULL;
     return nut;
 }
-void themCuoiPhieu(NutPhieu* &dau, NutPhieu* &cuoi, PhieuMuon p) {
+void themCuoiPhieu(NutPhieu*& dau, NutPhieu*& cuoi, PhieuMuon p) {
+    NutPhieu* nut = taoNutPhieu(p);
+    if (dau == NULL) {
+        dau = nut;
+        cuoi = nut;
+    }
+    else {
+        cuoi->tiep = nut;
+        cuoi = nut;
+    }
 }
+
 PhieuMuon* timTheoMaPhieu(NutPhieu* dau, string maPhieu) {
+    NutPhieu* cur = dau;
+    while (cur != NULL) {
+        if (cur->thongTin.maPhieu == maPhieu) return &(cur->thongTin);
+        cur = cur->tiep;
+    }
     return NULL;
 }
 void inDanhSachPhieu(NutPhieu* dau) {
