@@ -1,8 +1,13 @@
 #Chương Trình Quản Lý Thư Viện (C++)
+
 Đồ án Tin học. Học kỳ I (2026-2027).
+
 Giảng viên: Lương An Vinh.
+
 Sinh viên thực hiện: Huỳnh Anh Minh.
+
 MSSV: DH52400642.
+
 Hình thức: cá nhân.
 
 ## Mô tả
