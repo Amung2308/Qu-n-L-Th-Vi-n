@@ -18,6 +18,7 @@ int timChiSoDinh(DoThi dt, string ten);
 void themDinh(DoThi &dt, string ten);
 void themCanh(DoThi &dt, string dinh1, string dinh2);
 void bfsDoThi(DoThi dt, string dinhBatDau);
+void dfsThamLai(DoThi dt, int dinh,int start, bool daTham[]);
 void dfsDoThi(DoThi dt, string dinhBatDau);
 
 #endif

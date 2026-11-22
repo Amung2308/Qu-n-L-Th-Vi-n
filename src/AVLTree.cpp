@@ -10,11 +10,13 @@ NutAVL* taoNutAVL(Sach s) {
     return nut;
 }
 int chieuCaoAVL(NutAVL* nut) {
-    if (nut == NULL) return 0;
+    if (nut == NULL) 
+        return 0;
     return nut->chieuCao;
 }
 int canBangAVL(NutAVL* nut) {
-    if (nut == NULL) return 0;
+    if (nut == NULL) 
+        return 0;
     return chieuCaoAVL(nut->trai) - chieuCaoAVL(nut->phai);
 }
 NutAVL* xoayPhaiAVL(NutAVL* nut) {
