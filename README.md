@@ -58,7 +58,7 @@ Trên Windows (Dev-C++ / Code::Blocks): tạo project console mới, add toàn b
 - [x] Tuần 3 — AVL, BST, test quản lý sách
 - [x] Tuần 4 — Hash Table, test quản lý độc giả
 - [x] Tuần 5 — LinkedList, DynamicArray, File I/O
-- [ ] Tuần 6 — Mượn sách, trả sách, tính phạt
+- [x] Tuần 6 — Mượn sách, trả sách, tính phạt
 - [ ] Tuần 7 — Graph, BFS/DFS, thống kê top 10
 - [ ] Tuần 8 — Trie, tích hợp autocomplete, demo
 - [ ] Tuần 9 — Unit test, bảng so sánh hiệu năng, user manual
