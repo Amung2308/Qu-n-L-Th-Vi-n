@@ -1,60 +1,73 @@
-# Chương trình Quản lý Thư viện (C++)
+#Chương Trình Quản Lý Thư Viện (C++)
 
-Đồ án Tin học – Trường Đại học Công nghệ Sài Gòn (STU)
+Đồ án Tin học. Học kỳ I (2026-2027).
 
-- Sinh viên: Huỳnh Anh Minh
-- MSSV: DH52400642
-- Lớp: D24_TH02
-- Giảng viên hướng dẫn: Lương An Vinh
+Giảng viên: Lương An Vinh.
 
-## 1. Giới thiệu
+Sinh viên thực hiện: Huỳnh Anh Minh.
 
-Chương trình quản lý thư viện chạy trên màn hình console, viết bằng C++ và sử dụng các cấu trúc dữ liệu tự cài đặt. Dữ liệu sách và độc giả được lưu bằng file nhị phân trong thư mục `data/`.
+MSSV: DH52400642.
 
-## 2. Cấu trúc thư mục
+Hình thức: cá nhân.
 
-```text
-QuanLyThuVien/
-├── data/           # File dữ liệu chạy chương trình (.dat)
-├── docs/           # Tài liệu SRS, thiết kế và hình ảnh
-├── include/        # File khai báo .h
-├── src/            # Mã nguồn .cpp
-├── tests/          # Khu vực đặt các bài kiểm thử
-├── .gitignore
+## Mô tả
+Chương trình quản lý thư viện chạy trên console (C++11+), lưu dữ liệu bằng file nhị phân/văn bản, không dùng CSDL theo yêu cầu đề cương.
+
+## Cấu trúc thư mục
+```
+LibraryManagement/
+├── include/        # Khai báo lớp (.h) — struct dữ liệu + các CTDL
+├── src/            # Cài đặt (.cpp)
+├── data/           # File dữ liệu (.dat/.txt) — sinh ra khi chạy chương trình
+├── docs/           # SRS, thiết kế, báo cáo
+├── tests/          # Test case đơn giản (assert, không dùng framework ngoài)
 ├── Makefile
 └── README.md
 ```
 
-Các file Solution/Project của Visual Studio (`.sln`, `.vcxproj`, `.vcxproj.filters`, `.vcxproj.user`) được giữ trong thư mục trên máy để mở và chạy bằng Visual Studio. Các file này được `.gitignore` bỏ qua để repository trên GitHub giữ cấu trúc gọn theo mẫu.
+## Ánh xạ CTDL bắt buộc → Chức năng
+| # | CTDL | File | Áp dụng cho | Trạng thái |
+|---|------|------|-------------|------------|
+| 1 | AVL Tree | `AVLTree.h` | Quản lý sách theo ISBN | Khung sườn — cài Tuần 3 |
+| 2 | BST | `BSTree.h` | In danh mục sách theo tên (in-order) | Khung sườn — cài Tuần 3 |
+| 3 | Hash Table (separate chaining) | `HashTable.h` | Quản lý độc giả theo CMND | Khung sườn — cài Tuần 4 |
+| 4 | Danh sách liên kết đơn | `LinkedList.h` | Danh sách phiếu mượn | Khung sườn — cài Tuần 5 |
+| 5 | Mảng động (tự cài) | `DynamicArray.h` | Lịch sử giao dịch | Khung sườn — cài Tuần 5 |
+| 6 | Đồ thị (danh sách kề) | `Graph.h/.cpp` | Gợi ý sách cùng thể loại (BFS/DFS) | Khung sườn — cài Tuần 7 |
+| 7 | **Trie** (CTDL tự tìm hiểu) | `Trie.h/.cpp` | Autocomplete tên sách theo tiền tố | Khung sườn — cài Tuần 8 |
+| 8 | Đọc/ghi file nhị phân | `FileManager.h/.cpp` | Lưu trữ toàn bộ dữ liệu | Khung sườn — cài Tuần 5 |
 
-## 3. Các phần đã có trong mã nguồn
+> Giai đoạn hiện tại (Tuần 1) chỉ dựng **giao diện lớp + menu console**, chưa cài
+> thuật toán. Mỗi hàm còn thiếu đều có comment `TODO (Tuần X): ...` ghi rõ việc cần làm
+> và tuần tương ứng theo tiến độ 10 tuần của đề cương.
 
-- **Quản lý sách:** thêm sách, tìm theo ISBN bằng cây AVL, in danh mục theo ISBN bằng AVL và in theo tên bằng BST.
-- **Quản lý độc giả:** thêm, xóa và tìm độc giả theo CMND bằng bảng băm.
-- **Lưu dữ liệu:** đọc và ghi danh sách sách (`data/sach.dat`) và độc giả (`data/docgia.dat`) bằng file nhị phân.
-- **Cấu trúc hỗ trợ:** Linked List cho phiếu mượn, Dynamic Array cho lịch sử giao dịch, cùng các module Graph và Trie.
-
-Một số lựa chọn trên menu như sửa sách, nghiệp vụ mượn-trả, thống kê và gợi ý nâng cao hiện vẫn đang được phát triển; chưa nên xem là chức năng hoàn tất.
-
-## 4. Chạy bằng Visual Studio trên Windows
-
-1. Mở file `Huỳnh Anh Minh_DH52400642_Đồ Án Tin Học.sln` ở thư mục gốc.
-2. Chọn cấu hình `Debug | x64`.
-3. Nhấn `Ctrl + Shift + B` để Build.
-4. Nhấn `Ctrl + F5` để chạy không cần Debug.
-
-Working Directory được đặt về thư mục project để chương trình đọc/ghi đúng các đường dẫn tương đối `data/sach.dat` và `data/docgia.dat`.
-
-## 5. Build bằng Makefile
-
-Cần có `g++` và `make`:
-
+## Build & chạy
 ```bash
-make        # Biên dịch chương trình
-make run    # Biên dịch và chạy
-make clean  # Xóa thư mục obj/ và bin/
+make        # biên dịch, sinh ra bin/QuanLyThuVien
+make run    # biên dịch rồi chạy luôn
+make clean  # xoá file build (obj/, bin/)
 ```
 
-## 6. Dữ liệu và kiểm thử
+Trên Windows (Dev-C++ / Code::Blocks): tạo project console mới, add toàn bộ
+`src/*.cpp`, set thêm `include/` vào Additional Include Directories.
 
-Các file `.dat` được tạo hoặc cập nhật khi chạy chương trình. `.gitignore` bỏ qua các file dữ liệu chạy cục bộ để tránh đưa dữ liệu thử nghiệm cá nhân lên GitHub. Thư mục `tests/` hiện mới có file khung, phần kiểm thử tự động sẽ được bổ sung sau.
+## Checklist theo tuần (theo đề cương, mục 11)
+
+- [x] Tuần 1 — Repo Git, SRS.pdf, cấu trúc thư mục
+- [x] Tuần 2 — Design.pdf (sơ đồ lớp, định nghĩa struct)
+- [x] Tuần 3 — AVL, BST, test quản lý sách
+- [x] Tuần 4 — Hash Table, test quản lý độc giả
+- [x] Tuần 5 — LinkedList, DynamicArray, File I/O
+- [x] Tuần 6 — Mượn sách, trả sách, tính phạt
+- [ ] Tuần 7 — Graph, BFS/DFS, thống kê top 10
+- [ ] Tuần 8 — Trie, tích hợp autocomplete, demo
+- [ ] Tuần 9 — Unit test, bảng so sánh hiệu năng, user manual
+- [ ] Tuần 10 — Báo cáo, video, slide, nộp + ký
+
+## Ghi chú thiết kế
+
+- CTDL tự tìm hiểu đã chọn: **Trie**, áp dụng cho autocomplete tên sách (mục 3.5).
+- Các lớp CTDL tổng quát (AVLTree, BSTree, HashTable, LinkedList, DynamicArray) viết
+  dạng template `<Key, Value>` hoặc `<T>` để tái sử dụng được cho nhiều kiểu dữ liệu.
+- Chuỗi tiếng Việt trong code/console được viết không dấu để tránh lỗi hiển thị trên
+  Console Windows (cmd.exe mặc định không hỗ trợ tốt UTF-8 có dấu).
