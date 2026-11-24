@@ -127,7 +127,10 @@ int main() {
             bool oLaiMenuDocGia = true;
             while (oLaiMenuDocGia) {
                 int luaChon = hienThiMenuQuanLyDocGia();
-                if (luaChon == 0) { oLaiMenuDocGia = false; break; }
+                if (luaChon == 0) { 
+                    oLaiMenuDocGia = false;
+                    break; 
+                }
                 if (luaChon == 1) {
                     DocGia dg;
                     cout << "Nhap CMND: ";
@@ -208,7 +211,7 @@ int main() {
 								cout << "\nNhap ngay hen tra sach: ";
 								getline(cin, ngayHenTra);
                                 PhieuMuon p;
-								p.maPhieu = "PM" + to_string(soPhieuDaTao++);
+								p.maPhieu = "PM" + to_string(soPhieuDaTao);
                                 soPhieuDaTao++;
 								p.cmndDocGia = cmnd;
 								p.isbnSach = isbn;
@@ -266,7 +269,7 @@ int main() {
                         }
                     }
                     else if (luaChon == 3) {
-                        inPhieuDangMuon(dauPhieu,"");
+                        inPhieuDangMuon(dauPhieu, "");
                     }
                     else {
 						cout << "[Dang phat trien]";
@@ -278,8 +281,19 @@ int main() {
                 bool oLaiMenuThongKe = true;
                 while (oLaiMenuThongKe) {
                     int luaChon = hienThiMenuThongKe();
-                    if (luaChon == 0) { oLaiMenuThongKe = false; break; }
-                    cout << "\n[Dang phat trien]";
+                    if (luaChon == 0) {
+                        oLaiMenuThongKe = false; 
+                    break; 
+                    }
+                    if (luaChon == 2) {
+                        thongKeTop10SachMuonNhieuNhat(dauPhieu);
+                    }else if(luaChon==3){
+                        thonKeTop10DocGiaMuonNhieuNhat(dauPhieu);
+                    }
+                    else {
+                        cout << "\n[Dang phat trien]";
+                    }
+                    
                 }
                 break;
             }
@@ -287,8 +301,21 @@ int main() {
                 bool oLaiMenuGoiY = true;
                 while (oLaiMenuGoiY) {
                     int luaChon = hienThiMenuGoiYTimKiem();
-                    if (luaChon == 0) { oLaiMenuGoiY = false; break; }
-                    cout << "\n[Dang phat trien]";
+                    if (luaChon == 0) { 
+                        oLaiMenuGoiY = false;
+                        break; 
+                    }
+                    if (luaChon == 1) {
+                        string isbn;
+                        cout << "\nNhap ISBN sach can goi y: ";
+						cin >> isbn;
+                        bfsDoThi(doThiTheLoai, isbn);
+                        cout << "\n";
+						dfsDoThi(doThiTheLoai, isbn);
+                    }
+                    else {
+						cout << "\nDang phat trien";
+                    }
                 }
                 break;
             }
@@ -300,17 +327,20 @@ int main() {
                 cout << "\nLua chon khong hop le, vui long thu lai.\n";
                 break;
         }
-        Sach dsSachLuu[SO_LUONG_TOI_DA];
-        int soLuongSachLuu = 0;
-        layTatCaSachAVL(gocAVL, dsSachLuu, soLuongSachLuu);
-        ghiDanhSachSach("data/sach.dat", dsSachLuu, soLuongSachLuu);
-        DocGia dsDocGiaLuu[SO_LUONG_TOI_DA];
-        int soLuongDocGiaLuu = 0;
-        layTatCaDocGiaBam(bangDocGia, dsDocGiaLuu, soLuongDocGiaLuu);
-        ghiDanhSachDocGia("data/docgia.dat", dsDocGiaLuu, soLuongDocGiaLuu);
-        cout << "Da luu " << soLuongSachLuu << " sach va " << soLuongDocGiaLuu << "\ndoc gia ra file.";
     }
-
+    Sach* dsSachLuu = new Sach[SO_LUONG_TOI_DA];
+	delete[] dsSachNap;
+    int soLuongSachLuu = 0;
+    layTatCaSachAVL(gocAVL, dsSachLuu, soLuongSachLuu);
+    ghiDanhSachSach("data/sach.dat", dsSachLuu, soLuongSachLuu);
+    delete[] dsSachLuu;
+    DocGia* dsDocGiaLuu = new DocGia[SO_LUONG_TOI_DA];
+    int soLuongDocGiaLuu = 0;
+    layTatCaDocGiaBam(bangDocGia, dsDocGiaLuu, soLuongDocGiaLuu);
+    ghiDanhSachDocGia("data/docgia.dat", dsDocGiaLuu, soLuongDocGiaLuu);
+	delete[] dsDocGiaLuu;
+    cout << "Da luu " << soLuongSachLuu << " sach va " << soLuongDocGiaLuu << "\ndoc gia ra file.";
+    
     giaiPhongAVL(gocAVL);
     giaiPhongBST(gocBST);
     giaiPhongBam(bangDocGia);

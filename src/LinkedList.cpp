@@ -43,14 +43,12 @@ int demPhieuDangMuon(NutPhieu* dau, string cmnd) {
 }
 
 void inPhieuDangMuon(NutPhieu* dau, string cmnd) {
-	NutPhieu* cur = dau;
-    while (cur!=NULL)
-    {
-        if(cur->thongTin.trangThai == DANG_MUON)
-        {
-			cout << cur->thongTin.maPhieu << "_ISBN" << cur->thongTin.isbnSach<<"_CMND"<<cur->thongTin.cmndDocGia<<"_han tra"<<cur->thongTin.ngayHenTra << endl;
-		}
-		cur = cur->tiep;
+    NutPhieu* cur = dau;
+    while (cur != NULL) {
+        if (cur->thongTin.trangThai == DANG_MUON) {
+            cout << cur->thongTin.maPhieu << " - ISBN " << cur->thongTin.isbnSach << " - CMND " << cur->thongTin.cmndDocGia  << " - han tra " << cur->thongTin.ngayHenTra << endl;
+        }
+        cur = cur->tiep;
     }
 }
 
